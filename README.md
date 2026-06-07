@@ -72,9 +72,9 @@ cells.
 ```asciidoc
 [layout-rowcol, width="400px", height="200px"]
 ----
-cell(10): Header
+cell(20): Header
 cell: Content
-cell(10): Footer
+cell(20): Footer
 ----
 ```
 
@@ -101,11 +101,11 @@ content area in between.
 ```asciidoc
 [layout-rowcol, width="400px", height="250px"]
 ----
-cell(10): Header
+cell(20): Header
 cols:
   cell(25): Sidebar
   cell: Content
-cell(10): Footer
+cell(20): Footer
 ----
 ```
 
