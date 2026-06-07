@@ -9,3 +9,7 @@ require_relative "asciidoctor_diagram_layout/renderer/render_options"
 require_relative "asciidoctor_diagram_layout/renderer/html_renderer"
 require_relative "asciidoctor_diagram_layout/renderer/svg_renderer"
 require_relative "asciidoctor_diagram_layout/asciidoc/layout_block_processor"
+
+Asciidoctor::Extensions.register do
+  block AsciidoctorDiagramLayout::Asciidoc::LayoutBlockProcessor
+end

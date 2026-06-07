@@ -5,7 +5,7 @@ module AsciidoctorDiagramLayout
   module Asciidoc
     class LayoutBlockProcessor < Asciidoctor::Extensions::BlockProcessor
       use_dsl
-      named :layout
+      named :"layout-rowcol"
       on_contexts :listing, :literal
 
       def process(parent, reader, attrs)
