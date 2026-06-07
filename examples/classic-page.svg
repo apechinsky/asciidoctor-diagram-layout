@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="250" style="font-family:sans-serif;">
+  <defs>
+    <linearGradient id="g0-0" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="400" y2="25">
+      <stop offset="0%" stop-color="#dae7e2"/>
+      <stop offset="100%" stop-color="#dae7e6"/>
+    </linearGradient>
+    <linearGradient id="g0-25" gradientUnits="userSpaceOnUse" x1="0" y1="25" x2="100" y2="225">
+      <stop offset="0%" stop-color="#dcdae7"/>
+      <stop offset="100%" stop-color="#e0dae7"/>
+    </linearGradient>
+    <linearGradient id="g100-25" gradientUnits="userSpaceOnUse" x1="100" y1="25" x2="400" y2="225">
+      <stop offset="0%" stop-color="#dae7da"/>
+      <stop offset="100%" stop-color="#dae7de"/>
+    </linearGradient>
+    <linearGradient id="g0-225" gradientUnits="userSpaceOnUse" x1="0" y1="225" x2="400" y2="250">
+      <stop offset="0%" stop-color="#e1dae7"/>
+      <stop offset="100%" stop-color="#e5dae7"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="400" height="25" fill="url(#g0-0)" stroke="#8bc1ac" stroke-width="1"/>
+  <text x="200" y="12" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="#333">Header</text>
+  <rect x="0" y="25" width="100" height="200" fill="url(#g0-25)" stroke="#938bc1" stroke-width="1"/>
+  <text x="50" y="125" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="#333">Sidebar</text>
+  <rect x="100" y="25" width="300" height="200" fill="url(#g100-25)" stroke="#8cc18b" stroke-width="1"/>
+  <text x="250" y="125" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="#333">Content</text>
+  <rect x="0" y="225" width="400" height="25" fill="url(#g0-225)" stroke="#a88bc1" stroke-width="1"/>
+  <text x="200" y="237" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="#333">Footer</text>
+</svg>

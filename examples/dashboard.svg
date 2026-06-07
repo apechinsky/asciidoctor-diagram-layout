@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="350" style="font-family:sans-serif;">
+  <defs>
+    <linearGradient id="g0-0" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="600" y2="35">
+      <stop offset="0%" stop-color="#dadde7"/>
+      <stop offset="100%" stop-color="#dadae7"/>
+    </linearGradient>
+    <linearGradient id="g0-35" gradientUnits="userSpaceOnUse" x1="0" y1="35" x2="120" y2="322">
+      <stop offset="0%" stop-color="#dae7db"/>
+      <stop offset="100%" stop-color="#dae7e0"/>
+    </linearGradient>
+    <linearGradient id="g120-35" gradientUnits="userSpaceOnUse" x1="120" y1="35" x2="600" y2="121">
+      <stop offset="0%" stop-color="#e7dadc"/>
+      <stop offset="100%" stop-color="#e7dcda"/>
+    </linearGradient>
+    <linearGradient id="g120-121" gradientUnits="userSpaceOnUse" x1="120" y1="121" x2="278" y2="221">
+      <stop offset="0%" stop-color="#e7dae4"/>
+      <stop offset="100%" stop-color="#e7dae0"/>
+    </linearGradient>
+    <linearGradient id="g278-121" gradientUnits="userSpaceOnUse" x1="278" y1="121" x2="436" y2="221">
+      <stop offset="0%" stop-color="#e4e7da"/>
+      <stop offset="100%" stop-color="#dfe7da"/>
+    </linearGradient>
+    <linearGradient id="g436-121" gradientUnits="userSpaceOnUse" x1="436" y1="121" x2="600" y2="221">
+      <stop offset="0%" stop-color="#e7dadd"/>
+      <stop offset="100%" stop-color="#e7dbda"/>
+    </linearGradient>
+    <linearGradient id="g120-221" gradientUnits="userSpaceOnUse" x1="120" y1="221" x2="600" y2="322">
+      <stop offset="0%" stop-color="#e7dae3"/>
+      <stop offset="100%" stop-color="#e7dade"/>
+    </linearGradient>
+    <linearGradient id="g0-322" gradientUnits="userSpaceOnUse" x1="0" y1="322" x2="600" y2="350">
+      <stop offset="0%" stop-color="#e1dae7"/>
+      <stop offset="100%" stop-color="#e5dae7"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="600" height="35" fill="url(#g0-0)" stroke="#8b9ac1" stroke-width="1"/>
+  <text x="300" y="17" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="#333">Toolbar</text>
+  <rect x="0" y="35" width="120" height="287" fill="url(#g0-35)" stroke="#8bc191" stroke-width="1"/>
+  <text x="60" y="178" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="#333">Navigation</text>
+  <rect x="120" y="35" width="480" height="86" fill="url(#g120-35)" stroke="#c18b95" stroke-width="1"/>
+  <text x="360" y="78" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="#333">Hero</text>
+  <rect x="120" y="121" width="158" height="100" fill="url(#g120-121)" stroke="#c18bb4" stroke-width="1"/>
+  <text x="199" y="171" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="#333">Features</text>
+  <rect x="278" y="121" width="158" height="100" fill="url(#g278-121)" stroke="#b3c18b" stroke-width="1"/>
+  <text x="357" y="171" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="#333">Pricing</text>
+  <rect x="436" y="121" width="164" height="100" fill="url(#g436-121)" stroke="#c18b97" stroke-width="1"/>
+  <text x="518" y="171" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="#333">Testimonials</text>
+  <rect x="120" y="221" width="480" height="101" fill="url(#g120-221)" stroke="#c18baf" stroke-width="1"/>
+  <text x="360" y="271" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="#333">Call to Action</text>
+  <rect x="0" y="322" width="600" height="28" fill="url(#g0-322)" stroke="#a88bc1" stroke-width="1"/>
+  <text x="300" y="336" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="bold" fill="#333">Footer</text>
+</svg>
