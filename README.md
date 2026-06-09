@@ -51,6 +51,26 @@ asciidoctor -r asciidoctor-diagram-layout doc.adoc
 bundle exec asciidoctor -r asciidoctor-diagram-layout doc.adoc
 ```
 
+## Development
+
+Install dependencies:
+
+```
+bundle install
+```
+
+Run tests:
+
+```
+bundle exec rspec
+```
+
+Build the gem:
+
+```
+gem build asciidoctor-diagram-layout.gemspec
+```
+
 ## Examples
 
 
