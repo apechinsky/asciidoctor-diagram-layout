@@ -17,6 +17,9 @@ module AsciidoctorDiagramLayout
         sb << " height=\"#{h}\""
         sb << " style=\"font-family:sans-serif;\""
         sb << ">\n"
+        if options.title && !options.title.empty?
+          sb << "  <title>#{escape_xml(options.title)}</title>\n"
+        end
         if defs.length > 0
           sb << "  <defs>\n" << defs << "  </defs>\n"
         end

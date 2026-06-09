@@ -48,4 +48,19 @@ RSpec.describe AsciidoctorDiagramLayout::Renderer::HtmlRenderer do
     options = AsciidoctorDiagramLayout::Renderer::RenderOptions.new(width: "800px")
     expect(renderer.render(root, options)).to include("width:800px")
   end
+
+  it "wraps output in imageblock div when title is set" do
+    root    = parser.parse("cols:\n  cell: Content\n")
+    options = AsciidoctorDiagramLayout::Renderer::RenderOptions.new(title: "My Layout")
+    html    = renderer.render(root, options)
+    expect(html).to include('<div class="imageblock">')
+    expect(html).to include('<div class="title">My Layout</div>')
+    expect(html).to include('<div class="content">')
+  end
+
+  it "does not wrap output when title is absent" do
+    root = parser.parse("cols:\n  cell: Content\n")
+    html = renderer.render(root)
+    expect(html).not_to include('<div class="imageblock">')
+  end
 end

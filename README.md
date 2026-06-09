@@ -1,6 +1,8 @@
 # asciidoctor-diagram-layout
 
-An Asciidoctor extension for documenting UI layouts as diagrams.
+An Asciidoctor extension for documenting UI layouts as diagrams,
+intended for describing the structure of composite views (pages, screens,
+etc.).
 
 ## The problem
 
@@ -43,7 +45,14 @@ Pass `-r asciidoctor-diagram-layout` to the Asciidoctor CLI:
 asciidoctor -r asciidoctor-diagram-layout doc.adoc
 ```
 
+### Running from source
+
+```
+bundle exec asciidoctor -r asciidoctor-diagram-layout doc.adoc
+```
+
 ## Examples
+
 
 ### Single column layout
 

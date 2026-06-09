@@ -13,7 +13,12 @@ module AsciidoctorDiagramLayout
         sb << "<div style=\"#{wrapper_style}\">\n"
         render_node(root, sb, 1, options)
         sb << "</div>\n"
-        sb
+        if options.title && !options.title.empty?
+          "<div class=\"imageblock\">\n<div class=\"content\">\n#{sb}</div>\n" \
+          "<div class=\"title\">#{options.title}</div>\n</div>"
+        else
+          sb
+        end
       end
 
       private

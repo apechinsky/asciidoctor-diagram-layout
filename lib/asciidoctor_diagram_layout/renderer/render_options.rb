@@ -1,12 +1,13 @@
 module AsciidoctorDiagramLayout
   module Renderer
     class RenderOptions
-      attr_reader :width, :height, :color_scheme, :name_converter
+      attr_reader :width, :height, :title, :color_scheme, :name_converter
 
-      def initialize(width: "100%", height: nil, palette: "rainbow", pdf: false,
+      def initialize(width: "100%", height: nil, title: nil, palette: "rainbow", pdf: false,
                      color_scheme: nil, name_converter: nil)
         @width          = width
         @height         = height
+        @title          = title
         @color_scheme   = color_scheme || Scheme::CellColorSchemeFactory.resolve(palette, pdf: pdf)
         @name_converter = name_converter || method(:escape)
       end

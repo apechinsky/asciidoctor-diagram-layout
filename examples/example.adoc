@@ -1,0 +1,279 @@
+= Layout Diagram Extension - Usage Examples
+:source-highlighter: highlight.js
+
+This document shows how to use the `layout-rowcol` block in AsciiDoc documents.
+
+== Basic Usage
+
+A layout block contains a DSL that describes rows and columns of named cells.
+
+=== Single Column
+
+A plain list of cells renders as a vertical stack:
+
+[source,asciidoc]
+....
+[layout-rowcol, width="400px", height="200px"]
+----
+cell: Header
+cell: Content
+cell: Footer
+----
+....
+
+[layout-rowcol, width="400px", height="200px"]
+----
+cell: Header
+cell: Content
+cell: Footer
+----
+
+=== Two-Column Layout
+
+Wrap cells in a `cols:` container to arrange them horizontally:
+
+[source,asciidoc]
+....
+[layout-rowcol, width="400px", height="150px"]
+----
+cols:
+  cell(30): Sidebar
+  cell: Content
+----
+....
+
+[layout-rowcol, width="400px", height="150px"]
+----
+cols:
+  cell(30): Sidebar
+  cell: Content
+----
+
+=== Classic Page Layout
+
+Combine rows and columns for a classic page structure:
+
+[source,asciidoc]
+....
+[layout-rowcol, width="400px", height="250px"]
+----
+cell(15): Header
+cols:
+  cell(25): Sidebar
+  cell: Content
+cell(15): Footer
+----
+....
+
+[layout-rowcol, width="400px", height="250px"]
+----
+cell(15): Header
+cols:
+  cell(25): Sidebar
+  cell: Content
+cell(15): Footer
+----
+
+== Block Attributes
+
+=== `direction`
+
+Sets the implicit root direction when there is no top-level container.
+Accepted values: `rows` (default), `cols`.
+
+[source,asciidoc]
+....
+[layout-rowcol, direction="cols", width="400px", height="120px"]
+----
+cell(30): Nav
+cell: Main
+cell(20): Aside
+----
+....
+
+[layout-rowcol, direction="cols", width="400px", height="120px"]
+----
+cell(30): Nav
+cell: Main
+cell(20): Aside
+----
+
+=== `width` and `height`
+
+Control the dimensions of the rendered layout.
+Values are CSS strings: `600px`, `100%`, `80vw`.
+
+=== `palette`
+
+Choose a color scheme for cell fills.
+
+Available palettes: `rainbow` (default), `pastel`, `warm`, `cool`, `mono`.
+
+[source,asciidoc]
+....
+[layout-rowcol, palette="warm", width="400px", height="120px"]
+----
+cols:
+  cell: Zone A
+  cell: Zone B
+  cell: Zone C
+----
+....
+
+[layout-rowcol, palette="warm", width="400px", height="120px"]
+----
+cols:
+  cell: Zone A
+  cell: Zone B
+  cell: Zone C
+----
+
+[layout-rowcol, palette="cool", width="400px", height="120px"]
+----
+cols:
+  cell: Zone A
+  cell: Zone B
+  cell: Zone C
+----
+
+[layout-rowcol, palette="mono", width="400px", height="120px"]
+----
+cols:
+  cell: Zone A
+  cell: Zone B
+  cell: Zone C
+----
+
+=== `title`
+
+A block title is set with the standard AsciiDoc `.Title` syntax on the line above the block.
+For HTML output the diagram is wrapped in an image block structure with a caption below it.
+For SVG output the title is embedded as a `<title>` element inside the SVG and also set as
+the block caption.
+
+[source,asciidoc]
+....
+.Application Layers
+[layout-rowcol, width="400px", height="200px"]
+----
+cell: Presentation
+cell: Business Logic
+cell: Data Access
+----
+....
+
+.Application Layers
+[layout-rowcol, width="400px", height="200px"]
+----
+cell: Presentation
+cell: Business Logic
+cell: Data Access
+----
+
+== Cell Sizing
+
+Cells can have explicit percentage sizes or grow to fill available space automatically.
+
+- `cell: Name` - takes equal share of remaining space
+- `cell(N): Name` - fixed N percent of the parent container
+
+Fixed sizes are applied first; the remainder is split equally among auto-size cells.
+
+[source,asciidoc]
+....
+[layout-rowcol, width="400px", height="200px"]
+----
+cols:
+  cell(20): 20%
+  cell(30): 30%
+  cell: auto
+  cell: auto
+----
+....
+
+[layout-rowcol, width="400px", height="200px"]
+----
+cols:
+  cell(20): 20%
+  cell(30): 30%
+  cell: auto
+  cell: auto
+----
+
+== Nesting
+
+Containers nest to arbitrary depth:
+
+[source,asciidoc]
+....
+[layout-rowcol, width="500px", height="300px"]
+----
+cell(15): Toolbar
+cols:
+  cell(20): Nav
+  rows:
+    cell: Hero
+    cols:
+      cell: Column A
+      cell: Column B
+      cell: Column C
+    cell(15): Footer
+----
+....
+
+[layout-rowcol, width="500px", height="300px"]
+----
+cell(15): Toolbar
+cols:
+  cell(20): Nav
+  rows:
+    cell: Hero
+    cols:
+      cell: Column A
+      cell: Column B
+      cell: Column C
+    cell(15): Footer
+----
+
+== SVG Output
+
+For PDF generation or when you need a vector image file, use `renderer="svg"`.
+The `target` attribute sets the output filename (without extension) and is required -
+the SVG is always written to a file, regardless of backend.
+
+[source,asciidoc]
+....
+.System Layout
+[layout-rowcol, my-layout, renderer="svg", width="600px", height="300px"]
+----
+cell(15): Header
+cols:
+  cell(25): Sidebar
+  cell: Content
+cell(15): Footer
+----
+....
+
+For the `html5` backend the file is written to the document output directory and
+embedded as an image by filename.
+For the `pdf` backend the absolute path is used so Asciidoctor PDF can locate the file.
+
+The title set via `.Title` syntax is embedded as a `<title>` element inside the SVG
+and rendered as a figure caption by Asciidoctor.
+
+== Cell Names with AsciiDoc Macros
+
+Cell names support inline AsciiDoc macros in HTML output.
+The name is processed through `sub_specialchars` and `sub_macros`,
+so cross-references and links are resolved:
+
+[source,asciidoc]
+....
+[layout-rowcol]
+----
+cell: xref:module-auth[Auth Module]
+cell: link:https://example.com[External API]
+----
+....
+
+In SVG output `xref:` macros are stripped, keeping only the display text.
