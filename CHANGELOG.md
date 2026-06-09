@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.0] - 2026-06-09
+
+### Added
+
+- Asciidoctor.js implementation for VS Code preview support (`lib/asciidoctor_diagram_layout/js/layout-rowcol.js`)
+
 ## [1.1.0] - 2026-06-09
 
 ### Added
