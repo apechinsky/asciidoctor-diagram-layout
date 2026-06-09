@@ -62,13 +62,13 @@ bundle install
 Run tests:
 
 ```
-bundle exec rspec
+bundle exec rake spec
 ```
 
 Build the gem:
 
 ```
-gem build asciidoctor-diagram-layout.gemspec
+bundle exec rake build
 ```
 
 ## Examples
