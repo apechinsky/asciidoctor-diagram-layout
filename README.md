@@ -71,6 +71,28 @@ Build the gem:
 bundle exec rake build
 ```
 
+### Releasing a new version
+
+1. Update the version in `lib/asciidoctor_diagram_layout/version.rb`
+2. Update `CHANGELOG.md`
+3. Commit: `git commit -m "Release x.y.z"`
+
+**Via GitHub Actions** - push a version tag; CI runs tests and publishes to rubygems.org automatically:
+
+```
+git tag vx.y.z && git push origin vx.y.z
+```
+
+Requires `RUBYGEMS_API_KEY` secret configured in the repository settings.
+
+**Locally** - build, tag, and publish in one command:
+
+```
+bundle exec rake release
+```
+
+Requires rubygems.org credentials (`gem signin`).
+
 ## Examples
 
 
