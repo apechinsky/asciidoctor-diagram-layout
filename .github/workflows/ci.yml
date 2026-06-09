@@ -29,6 +29,6 @@ jobs:
           ruby-version: "3.x"
           bundler-cache: true
       - run: bundle exec rake build
-      - run: gem push pkg/*.gem
-        env:
-          GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+      - uses: rubygems/release-gem@v1
+        with:
+          api-key: ${{ secrets.RUBYGEMS_API_KEY }}
