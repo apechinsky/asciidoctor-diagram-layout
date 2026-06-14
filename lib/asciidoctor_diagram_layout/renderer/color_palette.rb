@@ -1,11 +1,22 @@
 module AsciidoctorDiagramLayout
-  module Renderer
-    module ColorPalette
-      STROKE_COLOR = "#d0d0d0"
-      GOLDEN_RATIO = 0.618033988749895
-      HUE_RANGE    = 360
 
-      # Converts HSL to a hex color string, identical to Java ColorPalette.hslToHex.
+  # Renderer subsystem (HTML and SVG backends).
+  #
+  module Renderer
+    # Utility module for HSL-to-hex conversion and Java-compatible hashing.
+    #
+    # @api private
+    module ColorPalette
+      STROKE_COLOR = "#d0d0d0"      # :nodoc:
+      GOLDEN_RATIO = 0.618033988749895 # :nodoc:
+      HUE_RANGE    = 360            # :nodoc:
+
+      # Converts HSL values to a hex color string.
+      #
+      # @param hue        [Integer] hue angle (0..359)
+      # @param saturation [Integer] saturation (0..100)
+      # @param lightness  [Integer] lightness  (0..100)
+      # @return [String] hex color (e.g. "#d4d4d4")
       def self.hsl_to_hex(hue, saturation, lightness)
         s = saturation / 100.0
         l = lightness  / 100.0
@@ -31,15 +42,20 @@ module AsciidoctorDiagramLayout
         format("#%02x%02x%02x", ri.round, gi.round, bi.round)
       end
 
-      # Java String.hashCode: s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]
-      # using 32-bit signed integer overflow semantics.
+      # Java-compatible String#hashCode.
+      #
+      # Uses 32-bit signed overflow semantics, identical to the algorithm
+      # defined in the Java Language Specification:
+      #   s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]
+      #
+      # @param str [String]
+      # @return [Integer] signed 32-bit hash code
       def self.java_hash(str)
         return 0 if str.nil? || str.empty?
         h = 0
         str.each_char do |c|
           h = (31 * h + c.ord) & 0xffffffff
         end
-        # convert to signed 32-bit
         h >= 0x80000000 ? h - 0x100000000 : h
       end
     end

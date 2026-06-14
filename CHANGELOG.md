@@ -1,10 +1,16 @@
 # Changelog
 
-## [1.2.0] - 2026-06-09
+## [Unreleased]
 
 ### Added
 
+- `bw` palette — black-and-white scheme (white fill, black stroke, no visible gradient)
 - Asciidoctor.js implementation for VS Code preview support (`lib/asciidoctor_diagram_layout/js/layout-rowcol.js`)
+
+### Changed
+
+- Factory `CellColorSchemeFactory`: added explicit `"rainbow"` case; unknown palette name now raises `ArgumentError`
+- Naming: "flex layout" replaced with "rowcol layout" in comments and gemspec
 
 ## [1.1.0] - 2026-06-09
 

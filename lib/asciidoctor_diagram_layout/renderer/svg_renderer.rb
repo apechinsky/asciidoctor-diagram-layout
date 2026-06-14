@@ -1,10 +1,19 @@
 module AsciidoctorDiagramLayout
   module Renderer
-    class SvgRenderer
-      DEFAULT_WIDTH  = 600
-      DEFAULT_HEIGHT = 300
-      FONT_SIZE      = 14
 
+    # Renders a layout node tree to SVG.
+    #
+    # Each cell produces a +<rect>+ with a linear gradient fill and centered
+    # bold text.
+    #
+    class SvgRenderer
+      DEFAULT_WIDTH  = 600 # :nodoc:
+      DEFAULT_HEIGHT = 300 # :nodoc:
+      FONT_SIZE      = 14  # :nodoc:
+
+      # @param root    [ContainerNode] parsed layout tree
+      # @param options [RenderOptions]
+      # @return [String] SVG document
       def render(root, options = RenderOptions.new)
         w = parse_px(options.width,  DEFAULT_WIDTH)
         h = parse_px(options.height, DEFAULT_HEIGHT)

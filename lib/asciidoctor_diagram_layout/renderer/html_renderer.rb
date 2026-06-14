@@ -1,10 +1,19 @@
 module AsciidoctorDiagramLayout
   module Renderer
+
+    # Renders a layout node tree to inline HTML (a nested +<div>+ structure).
+    #
+    # Each cell is a flex item with a CSS linear gradient background.
+    #
     class HtmlRenderer
+      # :nodoc:
       CELL_BASE = "display:flex; align-items:center; justify-content:center;" \
                   " padding:8px; font-weight:bold; font-family:sans-serif;" \
                   " min-height:60px; box-sizing:border-box; color:#333;"
 
+      # @param root    [ContainerNode] parsed layout tree
+      # @param options [RenderOptions]
+      # @return [String] HTML fragment
       def render(root, options = RenderOptions.new)
         sb = +""
         height_style = options.height ? " min-height:#{options.height};" : ""

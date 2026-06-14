@@ -2,13 +2,24 @@ require "asciidoctor"
 require "asciidoctor/extensions"
 
 module AsciidoctorDiagramLayout
+
+  # Asciidoctor integration — block processor and extension registration.
+  #
   module Asciidoc
+    # Asciidoctor block processor for the +[layout]+ block.
+    #
+    # Parses a DSL body into a layout tree and renders it as inline HTML
+    # (HTML backend) or standalone SVG (all other backends).
     class LayoutBlockProcessor < Asciidoctor::Extensions::BlockProcessor
       use_dsl
       named :"layout-rowcol"
       on_contexts :listing, :literal
       name_positional_attributes "target"
 
+      # @param parent [Asciidoctor::Block] parent block
+      # @param reader [Asciidoctor::Reader] DSL source reader
+      # @param attrs  [Hash] block attributes
+      # @return [Asciidoctor::Block] rendered block
       def process(parent, reader, attrs)
         dsl           = reader.read
         implicit_dir  = attrs["direction"] == "cols" ? :cols : :rows

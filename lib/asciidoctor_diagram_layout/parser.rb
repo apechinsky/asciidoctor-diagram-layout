@@ -1,16 +1,31 @@
 module AsciidoctorDiagramLayout
+
+  # Raised when the DSL input is malformed.
   class ParseError < StandardError; end
 
-  # Parses flex layout DSL text into a node tree.
+  # Parses rowcol layout DSL text into a node tree.
   #
-  # Format: one directive per line. Containers (cols, rows) declare
-  # a nested block via indentation. Leaf zones use cell.
+  # Format: one directive per line.  Containers (cols, rows) declare
+  # a nested block via indentation.  Leaf zones use +cell+.
+  #
   # An optional size in parentheses sets a fixed percentage:
-  #   cell(30): Name  or  cols(40):
+  #   cell(30): Name
+  #   cols(40):
+  #
+  # @example Two-column layout
+  #   Parser.new.parse("cols:\n  cell: Sidebar\n  cell: Content\n")
+  #
   class Parser
-    LINE_PATTERN = /\A(?<keyword>cols|rows|cell)(?:\((?<size>\d+)\))?:(?<rest>.*)\z/i
-    TAB_WIDTH    = 4
+    LINE_PATTERN = /\A(?<keyword>cols|rows|cell)(?:\((?<size>\d+)\))?:(?<rest>.*)\z/i # :nodoc:
+    TAB_WIDTH    = 4 # :nodoc:
 
+    # Parses a DSL string and returns a {ContainerNode} tree root.
+    #
+    # @param dsl               [String] layout DSL
+    # @param implicit_direction [Symbol] +:rows+ or +:cols+ — fallback
+    #   direction when the top-level is a bare cell
+    # @return [ContainerNode]
+    # @raise  [ParseError] on syntax errors or empty input
     def parse(dsl, implicit_direction = :rows)
       lines = dsl.split("\n", -1)
       state = ParseState.new(lines)
@@ -101,7 +116,11 @@ module AsciidoctorDiagramLayout
     end
   end
 
+  # Internal parser position tracker.
+  #
+  # @!visibility private
   ParseState = Struct.new(:lines, :index) do
+    # :nodoc:
     def initialize(lines)
       super(lines, 0)
     end
@@ -110,15 +129,32 @@ module AsciidoctorDiagramLayout
       index < lines.size
     end
 
+    # @!visibility private
     def peek
       lines[index]
     end
 
+    # @!visibility private
     def advance
       self.index += 1
     end
   end
 
+  # A container node holding child nodes in a row or column direction.
+  #
+  # @!attribute direction
+  #   @return [:cols, :rows] flex direction
+  # @!attribute size
+  #   @return [Integer, :auto] percentage of parent or +:auto+ for flex grow
+  # @!attribute children
+  #   @return [Array<ContainerNode, CellNode>]
   ContainerNode = Struct.new(:direction, :size, :children)
-  CellNode      = Struct.new(:size, :name)
+
+  # A leaf node representing a named cell.
+  #
+  # @!attribute size
+  #   @return [Integer, :auto] percentage of parent or +:auto+ for flex grow
+  # @!attribute name
+  #   @return [String] cell name, may contain AsciiDoc inline macros
+  CellNode = Struct.new(:size, :name)
 end
