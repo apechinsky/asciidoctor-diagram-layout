@@ -1,5 +1,10 @@
 # Changelog
 
+## [Unreleased]
+
+- Automate release process with `prepare` script.
+`bundle exec rake prepare[x.y.z]` — bumps version, updates changelog with today's date, commits, and tags
+
 ## [1.2.0] - 2026-06-14
 
 ### Added

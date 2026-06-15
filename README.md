@@ -73,18 +73,18 @@ bundle exec rake build
 
 ### Releasing a new version
 
-1. Update the version in `lib/asciidoctor_diagram_layout/version.rb`
-2. Update `CHANGELOG.md`
-3. Commit: `git commit -m "Release x.y.z"`
-4. Tag: `git tag vx.y.z`
-5. Push: `git push origin vx.y.z`
+1. Ensure all changes are listed under `## [Unreleased]` in `CHANGELOG.md`
+2. Run `bundle exec rake prepare[1.2.0]` — bumps version, updates changelog with today's date, commits, and tags
+3. Push: `git push --follow-tags`
 
-Requires `RUBYGEMS_API_KEY` secret configured in the repository settings.
+GitHub Actions triggers on the `v*` tag, builds the gem, and publishes it to
+rubygems.org using the `RUBYGEMS_API_KEY` secret.
 
-**Locally** - build, tag, and publish in one command:
+**Manual publication** (if CI is unavailable):
 
 ```
-bundle exec rake release
+bundle exec rake build
+gem push pkg/*.gem
 ```
 
 Requires rubygems.org credentials (`gem signin`).
