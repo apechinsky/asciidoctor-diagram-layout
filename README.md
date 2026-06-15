@@ -74,7 +74,7 @@ bundle exec rake build
 ### Releasing a new version
 
 1. Ensure all changes are listed under `## [Unreleased]` in `CHANGELOG.md`
-2. Run `bundle exec rake prepare[1.2.0]` — bumps version, updates changelog with today's date, commits, and tags
+2. Run `bundle exec rake 'prepare[1.2.0]'` — bumps version, updates changelog with today's date, commits, and tags
 3. Push: `git push --follow-tags`
 
 GitHub Actions triggers on the `v*` tag, builds the gem, and publishes it to

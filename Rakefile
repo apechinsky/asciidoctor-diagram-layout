@@ -30,7 +30,7 @@ task :prepare, [:version] do |_t, args|
   raise "Cannot find VERSION string in #{version_file}" unless current
 
   today = Time.now.strftime("%Y-%m-%d")
-  updated = version_rb.sub(/(?<=\bVERSION\s*=\s*")#{Regexp.escape(current)}/, new_version)
+  updated = version_rb.sub(/\bVERSION\s*=\s*"[^"]+"/, %(VERSION = "#{new_version}"))
   File.write(version_file, updated)
 
   updated_changelog = changelog.sub(/^## \[Unreleased\]$/, "## [#{new_version}] - #{today}")
