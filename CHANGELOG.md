@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [1.3.0] - 2026-06-15
 
 - Automate release process with `prepare` script.
 `bundle exec rake prepare[x.y.z]` — bumps version, updates changelog with today's date, commits, and tags
